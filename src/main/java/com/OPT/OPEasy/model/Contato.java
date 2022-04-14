@@ -19,12 +19,11 @@ public class Contato {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome, email;
-    @Id
     private String nick;
     @OneToOne
     private Empresa empresa;
 
-    public void setAttributes(Contato contato){
+public void setAttributes(Contato contato){
         if(contato.getNome() != null)
             this.nome = contato.getNome();
         if(contato.getEmail() != null)
