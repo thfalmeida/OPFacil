@@ -15,7 +15,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ValoresViagem {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE, 
+        generator = "sequence_id_valores"
+    )
     private Long id;
     private float viagem, motorista, ajudantes, almoco, outros;
 }

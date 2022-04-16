@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Motorista {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="motoristaGenerator", allocationSize=1)
+    @Id 
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="motoristaGenerator")
     private Long id;
-    private String nick, telefone, cpf, placaCaminhao;
+    private String nick, telefone, cpf, nome;
 
     public void setAttributes(Motorista motorista){
         if(motorista.getNick() != null)
@@ -26,7 +28,7 @@ public class Motorista {
             this.telefone = motorista.getTelefone();
         if(motorista.getCpf() != null)
             this.cpf = motorista.getCpf();
-        if(motorista.getPlacaCaminhao() != null)
-            this.placaCaminhao = motorista.getPlacaCaminhao();
+        if(motorista.getNome() != null)
+            this.nome = motorista.getNome();
     }
 }

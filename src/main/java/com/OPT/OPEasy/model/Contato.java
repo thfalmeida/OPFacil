@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Contato {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="contatoGenerator", allocationSize=1)
+    @Id 
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="contatoGenerator")
     private Long id;
     private String nome, email;
     private String nick;
@@ -32,5 +34,11 @@ public void setAttributes(Contato contato){
             this.nick = contato.getNick();
         if(contato.getEmpresa() != null)
             this.empresa = contato.getEmpresa();
+    }
+
+    public String toString(){
+        String text = "";
+        text += nome + "\n" + email;
+        return text;
     }
 }
