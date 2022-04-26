@@ -60,4 +60,9 @@ public class ContatoController {
         Contato contato = contatoService.getContatoByNick(nick);
         return new ResponseEntity<Contato>(contato, HttpStatus.OK);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<Contato> teste(){
+        return consultarContato((long) 8);
+    }
 }
