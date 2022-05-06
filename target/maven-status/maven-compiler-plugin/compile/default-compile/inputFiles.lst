@@ -1,7 +1,9 @@
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/MotoristaService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Empresa.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Mercado.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/OpEasyApplication.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/EmpresaController.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/MercadoService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/ViagemService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/ContatoRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/ContatoController.java
@@ -9,8 +11,10 @@
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/ViagemRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Contato.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Viagem.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/MercadoController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/ValoresViagem.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/ContatoService.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/MercadoRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/EmpresaRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/ViagemController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/ValoresViagemRepository.java

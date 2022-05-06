@@ -25,9 +25,10 @@ public class Viagem {
         generator = "sequence_id_viagem"
     )
     private Long id;
-    private Long motoristaID, empresaID, valoresID;
+    private Long motoristaID, empresaID, mercadoID;
     String endereco;
     LocalDate data;
+    float valor;
 
 
     public void setAttributes(Viagem viagem){
@@ -37,8 +38,8 @@ public class Viagem {
             this.empresaID= viagem.getEmpresaID();
         if(viagem.getData()!= null)
             this.data = viagem.getData();
-        if(viagem.getValoresID() != null)
-            this.valoresID = viagem.getValoresID();
+        if(viagem.getMercadoID() != null)
+            this.mercadoID = viagem.getMercadoID();
         if(viagem.getEndereco() != null)
             this.endereco = viagem.getEndereco();
 

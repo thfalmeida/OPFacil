@@ -17,9 +17,9 @@ public class MotoristaService {
     private MotoristaRepository motoristaRepository;
 
     public Motorista cadastrarMotorista(Motorista motorista){
-        Optional<Motorista> motoristaFound = motoristaRepository.findByNick(motorista.getNick());
-        if(motoristaFound.isPresent())
+        if(hasMotoristaByNick(motorista.getNick()))
             throw new ResourceNotFoundException("Nick já usado");
+        
         Motorista newMotorista = new Motorista();
         newMotorista.setAttributes(motorista);
         motoristaRepository.save(newMotorista);
@@ -27,19 +27,19 @@ public class MotoristaService {
     }
 
     public Motorista updateMotorista(Long id,Motorista motorista){
-        Motorista motoristaFounded = motoristaRepository.findById(id).orElseThrow(
+        Motorista motoristaFound = motoristaRepository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("Motorista não encontrado"));
-        motoristaFounded.setAttributes(motorista);
-        motoristaRepository.save(motoristaFounded);
-        return motoristaFounded;
+        motoristaFound.setAttributes(motorista);
+        motoristaRepository.save(motoristaFound);
+        return motoristaFound;
     }
 
     public Motorista deleteMotorista(Motorista motorista){
-        Motorista motoristaFounded = motoristaRepository.findById(motorista.getId()).orElseThrow(
+        Motorista motoristaFound = motoristaRepository.findById(motorista.getId()).orElseThrow(
             () -> new ResourceNotFoundException("Motorista não encontrado"));
 
-        motoristaRepository.delete(motoristaFounded);
-        return motoristaFounded;
+        motoristaRepository.delete(motoristaFound);
+        return motoristaFound;
     }
 
     public Stream<Motorista> findAll(){
