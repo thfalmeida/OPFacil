@@ -27,13 +27,13 @@ public class MotoristaController {
     MotoristaService motoristaService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Motorista> cadastrarMotorista(@RequestBody Motorista motorista){
+    public ResponseEntity<Motorista> cadastrarMotorista(@RequestBody Motorista motorista) throws Exception{
         Motorista newMotorista = motoristaService.cadastrarMotorista(motorista);
         return new ResponseEntity<Motorista>(newMotorista, HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Motorista> atualizarMotorista(@PathVariable Long id, @RequestBody Motorista motorista){
+    public ResponseEntity<Motorista> atualizarMotorista(@PathVariable Long id, @RequestBody Motorista motorista) throws Exception{
         Motorista newMotorista = motoristaService.updateMotorista(id, motorista);
         return new ResponseEntity<Motorista>(newMotorista, HttpStatus.ACCEPTED);
     }

@@ -33,7 +33,7 @@ public class EmpresaController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Empresa> atualizarEmpresa(@PathVariable Long id, @RequestBody Empresa empresa){
+    public ResponseEntity<Empresa> atualizarEmpresa(@PathVariable Long id, @RequestBody Empresa empresa) throws Exception{
         Empresa newEmpresa = empresaService.updateEmpresa(id, empresa);
         return new ResponseEntity<Empresa>(newEmpresa, HttpStatus.ACCEPTED);
     }
@@ -52,7 +52,7 @@ public class EmpresaController {
 
     @GetMapping("/nick/{nick}")
     public ResponseEntity<Empresa> consultarEmpresa(@PathVariable String nick){
-        Empresa empresa = empresaService.getEmpresaByID(nick);
+        Empresa empresa = empresaService.getEmpresaByNick(nick);
         return new ResponseEntity<Empresa>(empresa, HttpStatus.FOUND);
     }
 

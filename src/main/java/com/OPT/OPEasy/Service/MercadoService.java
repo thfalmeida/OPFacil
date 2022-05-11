@@ -3,7 +3,7 @@ package com.OPT.OPEasy.Service;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import com.OPT.OPEasy.Util.ResourceNotFoundException;
+import com.OPT.OPEasy.Util.ResourceNotFoundException; 
 import com.OPT.OPEasy.model.Mercado;
 import com.OPT.OPEasy.repository.MercadoRepository;
 
@@ -17,9 +17,9 @@ public class MercadoService {
     private MercadoRepository mercadoRepository;
 
 
-    public Mercado cadastrarMercado(Mercado mercado){
+    public Mercado cadastrarMercado(Mercado mercado) throws Exception{
         if(hasMercadoByNick(mercado.getNick()))
-            throw new ResourceNotFoundException("Nick já usado");
+            throw new Exception("Nick informado já se encontra cadastrado. Tente outro.");
 
         Mercado newMercado = new Mercado();
         newMercado.setAttributes(mercado);
@@ -27,10 +27,8 @@ public class MercadoService {
         return newMercado;
     }
 
-    public Mercado updateMercado(Long id,Mercado mercado){
-        System.out.println("Testando id:" + id);
-        Mercado mercadoFound = mercadoRepository.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("Mercado não encontrado"));
+    public Mercado updateMercado(Long id,Mercado mercado) throws Exception{
+        Mercado mercadoFound = checkMercadoUpdate(id, mercado);
         
         mercadoFound.setAttributes(mercado);
         mercadoRepository.save(mercadoFound);
@@ -39,7 +37,7 @@ public class MercadoService {
 
     public Mercado deleteMercado(Mercado mercado){
         Mercado mercadoFound = mercadoRepository.findById(mercado.getId()).orElseThrow(
-            () -> new ResourceNotFoundException("Motorista não encontrado"));
+            () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
 
             mercadoRepository.delete(mercadoFound);
         return mercadoFound;
@@ -51,13 +49,13 @@ public class MercadoService {
 
     public Mercado getMercadoByID(Long id){
         Mercado mercado = mercadoRepository.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("Mercado não encontrado"));
+            () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
         return mercado;
     }
 
     public Mercado getMercadoByNick(String nick){
         Mercado mercado = mercadoRepository.findByNick(nick).orElseThrow(
-            () -> new ResourceNotFoundException("Mercado não encontrado"));
+            () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
         return mercado;
     }
 
@@ -69,6 +67,28 @@ public class MercadoService {
     public boolean hasMercadoByNick(String nick){
         Optional<Mercado> mercado = mercadoRepository.findByNick(nick);
         return mercado.isPresent();
+    }
+
+        //Checa se o esta tentando alterar o nick do mercado,
+    //Se estiver, checa se existe outro mercado com o nick, 
+    //caso exista, retorna erro, no contrário, o mercado é alterado 
+    public Mercado checkMercadoUpdate(Long id, Mercado mercado) throws Exception{
+        Mercado mercadoFound = mercadoRepository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
+
+        if(mercado.getNick() != null){
+            String nick = mercado.getNick();
+
+            if(hasMercadoByNick(nick)){
+                Mercado mercadoByNick = mercadoRepository.findByNick(nick).get();
+                if(mercadoByNick.getId() == mercadoFound.getId()){
+                    return mercadoFound;
+                } else{
+                    throw new Exception("Nick informado já se encontra cadastrado. Tente outro.");
+                }
+            }
+        }
+        return mercadoFound;
     }
     
 }

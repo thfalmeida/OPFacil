@@ -29,13 +29,13 @@ public class ContatoController {
 
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Contato> cadastrarContato(@RequestBody Contato contato){
+    public ResponseEntity<Contato> cadastrarContato(@RequestBody Contato contato) throws Exception{
         Contato newContato = contatoService.CadastrarContato(contato);
         return new ResponseEntity<Contato>(newContato, HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Contato> atualizarContato(@PathVariable Long id, @RequestBody Contato contato){
+    public ResponseEntity<Contato> atualizarContato(@PathVariable Long id, @RequestBody Contato contato) throws Exception{
         Contato newContato = contatoService.updateContato(id, contato);
         return new ResponseEntity<Contato>(newContato, HttpStatus.ACCEPTED);
     }

@@ -27,13 +27,13 @@ public class MercadoController {
     private MercadoService mercadoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Mercado> cadastrarMercado(@RequestBody Mercado mercado){
+    public ResponseEntity<Mercado> cadastrarMercado(@RequestBody Mercado mercado) throws Exception{
         Mercado newMercado = mercadoService.cadastrarMercado(mercado);
         return new ResponseEntity<Mercado>(newMercado, HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Mercado> atualizarMercado(@PathVariable Long id, @RequestBody Mercado mercado){
+    public ResponseEntity<Mercado> atualizarMercado(@PathVariable Long id, @RequestBody Mercado mercado) throws Exception{
         Mercado newMercado = mercadoService.updateMercado(id, mercado);
         return new ResponseEntity<Mercado>(newMercado, HttpStatus.ACCEPTED);
     }
