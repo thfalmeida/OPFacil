@@ -1,12 +1,15 @@
 package com.OPT.OPEasy.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +22,14 @@ import lombok.Setter;
 @Table
 public class Viagem {
     
-    @Id
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE, 
-        generator = "sequence_id_viagem"
-    )
+    @SequenceGenerator(name="viagemGenerator", allocationSize=1)
+    @Id 
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="viagemGenerator")
     private Long id;
     private Long motoristaID, empresaID, mercadoID;
     String endereco;
-    LocalDate data;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    Date data;
     float valor;
 
 

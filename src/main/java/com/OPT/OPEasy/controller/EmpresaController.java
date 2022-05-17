@@ -38,13 +38,13 @@ public class EmpresaController {
         return new ResponseEntity<Empresa>(newEmpresa, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/deletar/listar")
     public ResponseEntity<Stream<Empresa>> listarEmpresa(){
         Stream<Empresa> empresas = empresaService.findAll();
         return new ResponseEntity<Stream<Empresa>>(empresas, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Empresa> consultarEmpresa(@PathVariable Long id){
         Empresa empresa = empresaService.getEmpresaByID(id);
         return new ResponseEntity<Empresa>(empresa, HttpStatus.FOUND);

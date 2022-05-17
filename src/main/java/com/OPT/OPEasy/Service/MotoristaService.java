@@ -34,11 +34,8 @@ public class MotoristaService {
     }
 
     public Motorista deleteMotorista(Motorista motorista){
-        Motorista motoristaFound = motoristaRepository.findById(motorista.getId()).orElseThrow(
-            () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
-
-        motoristaRepository.delete(motoristaFound);
-        return motoristaFound;
+        motoristaRepository.delete(motorista);
+        return motorista;
     }
 
     public Stream<Motorista> findAll(){
@@ -66,7 +63,7 @@ public class MotoristaService {
         return motorista.isPresent();
     }
 
-        //Checa se o esta tentando alterar o nick do motorista,
+    //Checa se o esta tentando alterar o nick do motorista,
     //Se estiver, checa se existe outro motorista com o nick, 
     //caso exista, retorna erro, no contrário, o motorista é alterado 
     public Motorista checkMotoristaUpdate(Long id, Motorista motorista) throws Exception{

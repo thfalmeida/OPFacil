@@ -38,7 +38,7 @@ public class MotoristaController {
         return new ResponseEntity<Motorista>(newMotorista, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Motorista> deleteMotorista(@PathVariable Long id){
         Motorista motorista = motoristaService.getMotoristaByID(id);
         motoristaService.deleteMotorista(motorista);

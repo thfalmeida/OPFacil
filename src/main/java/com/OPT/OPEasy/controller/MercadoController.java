@@ -38,7 +38,7 @@ public class MercadoController {
         return new ResponseEntity<Mercado>(newMercado, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Mercado> deleteMercado(@PathVariable Long id){
         Mercado mercado = mercadoService.getMercadoByID(id);
         mercadoService.deleteMercado(mercado);

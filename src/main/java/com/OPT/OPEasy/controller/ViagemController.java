@@ -37,7 +37,7 @@ public class ViagemController {
         return new ResponseEntity<Viagem>(newViagem, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Viagem> deleteViagem(@PathVariable Long id){
         Viagem viagem = viagemService.getViagemById(id);
         viagemService.deleteViagem(viagem);

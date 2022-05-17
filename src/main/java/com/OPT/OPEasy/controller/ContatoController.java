@@ -40,7 +40,7 @@ public class ContatoController {
         return new ResponseEntity<Contato>(newContato, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Contato> deleteContato(@PathVariable Long id){
         Contato contato = contatoService.getContatoById(id);
         contatoService.deleteContato(contato);
