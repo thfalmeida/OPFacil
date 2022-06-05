@@ -2,6 +2,7 @@ package com.OPT.OPEasy.Service;
 
 import java.util.stream.Stream;
 
+import com.OPT.OPEasy.DTO.ViagemDTO;
 import com.OPT.OPEasy.Util.ResourceNotFoundException;
 import com.OPT.OPEasy.model.Empresa;
 import com.OPT.OPEasy.model.Motorista;
@@ -22,23 +23,41 @@ public class ViagemService {
     private EmpresaService empresaService;
 
     
-    public Viagem cadastrarViagem(Viagem viagem){
-        if(!motoristaService.hasMotoristaById(viagem.getMotoristaID()))
-            throw new ResourceNotFoundException("Motorista não encontrado");
-        if(viagem.getEmpresaID() != null && !empresaService.hasEmpresaById(viagem.getEmpresaID()))
-            throw new ResourceNotFoundException("Empresa não encontrada");
-
+    public Viagem cadastrarViagem(ViagemDTO viagem){
+        checkCadastroViagem(viagem);
+        Motorista motorista = motoristaService.getMotoristaByID(viagem.getMotoristaID());
+        Empresa empresa = null;
+        if(viagem.getEmpresaID() != null){
+            empresa = empresaService.getEmpresaByID(viagem.getEmpresaID());
+        }
+            
         Viagem newViagem = new Viagem();
         newViagem.setAttributes(viagem);
+        newViagem.setMotorista(motorista);
+        newViagem.setEmpresa(empresa);
         viagemRepository.save(newViagem);
         return newViagem;
     }
     
-    public Viagem updateViagem(Long id,Viagem viagem){
-        viagemRepository.findById(id).orElseThrow(
+    public Viagem updateViagem(Long id,ViagemDTO viagem){
+        Viagem newViagem =  viagemRepository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("Viagem não encontrada"));
-        viagemRepository.save(viagem);
-        return viagem;
+
+        Motorista motorista = null;
+        if(viagem.getMotoristaID() != null)
+            motoristaService.getMotoristaByID(viagem.getMotoristaID());
+        
+        Empresa empresa = null;
+        if(viagem.getEmpresaID() != null)
+            empresa = empresaService.getEmpresaByID(viagem.getEmpresaID());
+        
+            
+        newViagem.setAttributes(viagem);
+        newViagem.setMotorista(motorista);
+        newViagem.setEmpresa(empresa);
+
+        viagemRepository.save(newViagem);
+        return newViagem;
     }
 
     public Viagem deleteViagem(Viagem viagem){
@@ -60,14 +79,21 @@ public class ViagemService {
 
     public Stream<Viagem> getViagemByMotorista(Long motoristaID){
         Motorista motorista = motoristaService.getMotoristaByID(motoristaID);
-        Stream<Viagem> viagens = viagemRepository.findByMotorista(motorista.getId()).stream();
+        Stream<Viagem> viagens = viagemRepository.findByMotorista(motorista).stream();
         return viagens;
     }
 
     public Stream<Viagem> getViagemByEmpresa(Long empresaID){
         Empresa empresa = empresaService.getEmpresaByID(empresaID);
-        Stream<Viagem> viagens = viagemRepository.findByEmpresa(empresa.getId()).stream();
+        Stream<Viagem> viagens = viagemRepository.findByEmpresa(empresa).stream();
         return viagens;
     }
 
+    public void checkCadastroViagem(ViagemDTO viagem){
+        if(!motoristaService.hasMotoristaById(viagem.getMotoristaID()))
+            throw new ResourceNotFoundException("Motorista não encontrado");
+        if(viagem.getEmpresaID() != null && !empresaService.hasEmpresaById(viagem.getEmpresaID()))
+            throw new ResourceNotFoundException("Empresa não encontrada");
+    }
 }
+ 

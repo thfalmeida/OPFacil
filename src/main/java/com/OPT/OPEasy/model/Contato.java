@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -22,8 +22,9 @@ public class Contato {
     private Long id;
     private String nome, email;
     private String nick;
-    @OneToOne
+    @ManyToOne
     private Empresa empresa;
+    private String descricao;
 
 public void setAttributes(Contato contato){
         if(contato.getNome() != null)
@@ -34,11 +35,13 @@ public void setAttributes(Contato contato){
             this.nick = contato.getNick();
         if(contato.getEmpresa() != null)
             this.empresa = contato.getEmpresa();
+        if(contato.getDescricao() != null)
+            this.descricao = contato.getDescricao();
     }
 
-    public String toString(){
+    public static String toString(Contato contato){
         String text = "";
-        text += nome + "\n" + email;
+        text += contato.getNome() + "\n" + contato.getEmail();
         return text;
     }
 }

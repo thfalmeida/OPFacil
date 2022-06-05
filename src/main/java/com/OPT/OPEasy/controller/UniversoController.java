@@ -2,6 +2,7 @@ package com.OPT.OPEasy.controller;
 
 import java.util.stream.Stream;
 
+import com.OPT.OPEasy.DTO.UniversoDTO;
 import com.OPT.OPEasy.Service.UniversoService;
 import com.OPT.OPEasy.model.Universo;
 
@@ -27,20 +28,16 @@ public class UniversoController {
     UniversoService universoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Universo> cadastrarUniverso(@RequestBody Universo universo) throws Exception{
-         Universo newUniverso = universoService.cadastrarUniverso(universo);
+    
+    public ResponseEntity<Universo> cadastrarUniverso(@RequestBody @DateTimeFormat(pattern="dd/MM/yyyy") UniversoDTO universo) throws Exception{
+        Universo newUniverso = universoService.cadastrarUniverso(universo);
          return new ResponseEntity<Universo>(newUniverso, HttpStatus.OK);
     }
 
-    // @PutMapping("/atualizar/{id}")
-    // public Universo atualizarUniverso(Universo universo){
-    //     return universoService.atualizarUniverso(universo);
-    // }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Universo> deletarUniverso(@PathVariable Long id) {
-        Universo deletedUniverso = universoService.getUniversoById(id);
-        universoService.deleteUniverso(deletedUniverso);
+    public ResponseEntity<Universo> deletarUniverso(@PathVariable Long id) throws Exception {
+        Universo deletedUniverso = universoService.deleteUniverso(id);
         return new ResponseEntity<Universo>(deletedUniverso, HttpStatus.OK);
 
     }
@@ -63,9 +60,9 @@ public class UniversoController {
         return new ResponseEntity<Universo>(universo, HttpStatus.OK);
     }
 
-    @GetMapping("/mercado/{id}")
-    public ResponseEntity<Stream<Universo>> consultarUniversoPorMercado(@PathVariable Long id){
-        Stream<Universo> universos = universoService.findByIdMercado(id);
+    @GetMapping("/transporte/{id}")
+    public ResponseEntity<Stream<Universo>> consultarUniversoPorTransporte(@PathVariable Long id) throws Exception{
+        Stream<Universo> universos = universoService.findByTransporte(id);
         return new ResponseEntity<Stream<Universo>>(universos, HttpStatus.OK);
     }
 

@@ -2,6 +2,7 @@ package com.OPT.OPEasy.controller;
 
 import java.util.stream.Stream;
 
+import com.OPT.OPEasy.DTO.ViagemDTO;
 import com.OPT.OPEasy.Service.ViagemService;
 import com.OPT.OPEasy.model.Viagem;
 
@@ -26,13 +27,13 @@ public class ViagemController {
     ViagemService viagemService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Viagem> cadastrarViagem(@RequestBody Viagem viagem){
+    public ResponseEntity<Viagem> cadastrarViagem(@RequestBody ViagemDTO viagem){
         Viagem newViagem = viagemService.cadastrarViagem(viagem);
         return new ResponseEntity<Viagem>(newViagem, HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Viagem> atualizarViagem(@PathVariable Long id, @RequestBody Viagem viagem){
+    public ResponseEntity<Viagem> atualizarViagem(@PathVariable Long id, @RequestBody ViagemDTO viagem){
         Viagem newViagem = viagemService.updateViagem(id, viagem);
         return new ResponseEntity<Viagem>(newViagem, HttpStatus.ACCEPTED);
     }

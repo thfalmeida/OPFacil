@@ -1,10 +1,12 @@
 package com.OPT.OPEasy.Service;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+
 import java.util.stream.Stream;
 
+import com.OPT.OPEasy.DTO.UniversoDTO;
 import com.OPT.OPEasy.Util.ResourceNotFoundException;
+import com.OPT.OPEasy.model.Transporte;
 import com.OPT.OPEasy.model.Universo;
 import com.OPT.OPEasy.repository.UniversoRepository;
 
@@ -18,14 +20,16 @@ public class UniversoService {
     UniversoRepository universoRepository;
 
     @Autowired
-    MercadoService mercadoService;
+    TransporteService transporteService;
 
     SimpleDateFormat formatter;
 
-    public Universo cadastrarUniverso(Universo universo) throws Exception{
+    public Universo cadastrarUniverso(UniversoDTO universo) throws Exception{
         checkCadastroUniverso(universo);
+        Transporte transporte = transporteService.findById(universo.getTransporteID());
         Universo newUniverso = new Universo();
         newUniverso.setAttributes(universo);
+        newUniverso.setTransporte(transporte);
         universoRepository.save(newUniverso);
         return newUniverso;
     }
@@ -41,18 +45,18 @@ public class UniversoService {
 
     
     
-    public Universo deleteUniverso(Universo universo){
+    public Universo deleteUniverso(Long id) throws Exception{
+        Universo universo = universoRepository.findById(id).orElseThrow(
+            () -> new Exception("Universo não encontrado."));
         universoRepository.delete(universo);
 
         return null;
     }
 
     public Stream<Universo> findAll(){
-        return universoRepository.findAll().stream();
-    }
-
-    public Stream<Universo> findByIdMercado(Long id){
-        return universoRepository.findByidMercado(id).stream();
+        Stream<Universo> uni = universoRepository.findAll().stream();
+        
+        return uni;
     }
 
     public Universo getUniversoById(Long id){
@@ -68,23 +72,26 @@ public class UniversoService {
         return universo;
     }
 
+    public Stream<Universo> findByTransporte(Long transporteID) throws Exception{
+        Transporte transporte = transporteService.findById(transporteID);
+        Stream<Universo> uni = universoRepository.findByTransporte(transporte).stream();
+        return uni;
+    }
+
     public boolean hasUniversoByOrder(String order){
         return universoRepository.findByOrdem(order).isPresent();
     }
 
 
-    private void checkCadastroUniverso(Universo universo) throws Exception{
+    private void checkCadastroUniverso(UniversoDTO universo) throws Exception{
         if(universo.getOrdem() == null)
             throw new Exception("A ordem não pode ser nula");
 
         if(hasUniversoByOrder(universo.getOrdem()))
             throw new Exception("Ordem informada já se encontra cadastrado. Tente outro."); 
         
-        if(universo.getIdMercado() == null)
-            throw new Exception("O id do mercado não pode ser nulo.");
-
-        if(!mercadoService.hasMercadoById(universo.getIdMercado()))
-            throw new ResourceNotFoundException("O mercado não foi encontrado.");
+        if(!transporteService.hasTransporte(universo.getTransporteID()))
+            throw new Exception("O transporte informado não existe.");
         
     }
 
@@ -105,20 +112,6 @@ public class UniversoService {
                 throw new Exception("Ordem já cadastrada.");
             }
         }
-
-
-        //Caso seja passado um mercado é validado se o id é encontrado. 
-        //Caso o mercado não seja encontrado, é lançada uma exceção.
-        if(universo.getIdMercado() != null && !mercadoService.hasMercadoById(universo.getIdMercado()))
-            throw new Exception("O mercado não foi encontrado.");
-
-        // if(universo.getData() != null && universo.getData() != universoFound.getData()){
-        //     formatter = new SimpleDateFormat();
-        //     try{
-        //         Date date = formatter.parse(universo.getData())
-        //     }
-        //}
-        
 
     }
 }

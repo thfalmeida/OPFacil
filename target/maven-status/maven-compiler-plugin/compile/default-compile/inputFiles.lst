@@ -14,12 +14,16 @@
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Motorista.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Util/ResourceNotFoundException.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/UniversoController.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/TransporteController.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/TransporteRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Empresa.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/UniversoRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/ViagemService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/ContatoController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/ViagemRepository.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Transporte.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Universo.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/TransporteService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/MercadoController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/MotoristaRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/EmpresaService.java
