@@ -1,9 +1,12 @@
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/DTO/ViagemDTO.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/MotoristaService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Mercado.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/OpEasyApplication.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/DTO/UniversoDTO.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/EmpresaController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/MercadoService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/ContatoRepository.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/DTO/ViagemRelatorioDTO.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/MotoristaController.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Contato.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Viagem.java
@@ -25,6 +28,8 @@
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Universo.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/TransporteService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/MercadoController.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Util/ViagemWritter.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/DTO/TransporteDTO.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/MotoristaRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/EmpresaService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/UniversoService.java

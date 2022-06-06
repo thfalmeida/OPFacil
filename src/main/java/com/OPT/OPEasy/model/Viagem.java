@@ -1,6 +1,6 @@
 package com.OPT.OPEasy.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Viagem {
     @ManyToOne
     private Empresa empresa;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date data;
+    private LocalDate data;
     private float valor, avaria;
 
 
@@ -53,14 +53,18 @@ public class Viagem {
     }
 
     public void setAttributes(ViagemDTO viagem){
-        if(viagem.getData()!= null)
-            this.data = viagem.getData();
         if(viagem.getData() != null)
             this.data = viagem.getData();
         if(viagem.getValor() != 0)
             this.valor = viagem.getValor();
         if(viagem.getAvaria() != 0)
         this.avaria = viagem.getAvaria();
+    }
+
+    public String ToString(Viagem viagem){
+        String retorno  = viagem.getId() + "/" + viagem.getMotorista().getNick() + "/" + viagem.getValor();
+
+        return retorno;
     }
 
 }

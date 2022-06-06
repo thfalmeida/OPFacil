@@ -1,8 +1,11 @@
 package com.OPT.OPEasy.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.stream.Stream;
 
 import com.OPT.OPEasy.DTO.ViagemDTO;
+import com.OPT.OPEasy.DTO.ViagemRelatorioDTO;
 import com.OPT.OPEasy.Service.ViagemService;
 import com.OPT.OPEasy.model.Viagem;
 
@@ -67,5 +70,11 @@ public class ViagemController {
     public ResponseEntity<Viagem> consultarViagem(@PathVariable Long id){
         Viagem viagem = viagemService.getViagemById(id);
         return new ResponseEntity<Viagem>(viagem, HttpStatus.OK);
+    }
+
+    @GetMapping("/report")
+    public ResponseEntity<Stream<Viagem>> gerarRelatorio(@RequestBody ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
+        Stream<Viagem>viagens = viagemService.gerarRelatorio(rel);
+        return new ResponseEntity<>(viagens, HttpStatus.OK);
     }
 }

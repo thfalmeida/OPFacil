@@ -1,7 +1,6 @@
 package com.OPT.OPEasy.DTO;
 
-import java.sql.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,8 +14,8 @@ import lombok.Setter;
 public class ViagemDTO {
     private Long motoristaID, empresaID;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date data;
+    private LocalDate data;
     private float valor, avaria;
-    private List<TransporteDTO> transporte;
+    // private List<TransporteDTO> transporte;
 
 }

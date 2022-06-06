@@ -1,5 +1,7 @@
 package com.OPT.OPEasy.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -10,7 +12,10 @@ import com.OPT.OPEasy.DTO.TransporteDTO;
 import com.OPT.OPEasy.Util.ResourceNotFoundException;
 import com.OPT.OPEasy.model.Mercado;
 import com.OPT.OPEasy.model.Transporte;
+import com.OPT.OPEasy.model.Viagem;
 import com.OPT.OPEasy.repository.TransporteRepository;
+
+import antlr.collections.List;
 
 @Service
 public class TransporteService {
@@ -18,13 +23,17 @@ public class TransporteService {
     @Autowired
     private TransporteRepository transporteRepository;
     @Autowired
+    private ViagemService viagemService;
+    @Autowired
     private MercadoService mercadoService;
 
     public Transporte createTransporte(TransporteDTO transporte) throws Exception{
         if(hasTransporte(transporte.getTransporte()))
             throw new Exception("Transporte já cadastrado");
+        Viagem viagem = viagemService.getViagemById(transporte.getViagemID());
         Transporte newTransporte = new Transporte();
         newTransporte.SetTransporte(transporte);
+        newTransporte.setViagem(viagem);
         transporteRepository.save(newTransporte);
         return newTransporte;
     }
@@ -35,8 +44,13 @@ public class TransporteService {
         transporteFound.SetTransporte(transporte);
 
         Mercado mercado = null;
-        if(transporte.getMercadoId() != null)
-            mercado = mercadoService.getMercadoByID(transporte.getMercadoId());
+        if(transporte.getMercadoID() != null)
+            mercado = mercadoService.getMercadoByID(transporte.getMercadoID());
+        
+        Viagem viagem = null;
+        if(transporte.getViagemID() != null)
+            viagem = viagemService.getViagemById(transporte.getMercadoID());
+        transporteFound.setViagem(viagem);
         transporteFound.setMercado(mercado);  
         transporteRepository.save(transporteFound);
         return transporteFound;
@@ -59,6 +73,17 @@ public class TransporteService {
         return transporte;
     }
 
+    public Stream<Transporte> findByViagem(Long id) throws Exception{
+        Viagem viagem = viagemService.getViagemById(id);
+        ArrayList<Transporte> transporte = (ArrayList<Transporte>) findByViagem(viagem);
+        return transporte.stream();
+    }
+
+    public List findByViagem(Viagem viagem){
+        ArrayList<Transporte> transportes = (ArrayList<Transporte>)transporteRepository.findByViagem(viagem);
+        return (List) transportes;
+    }
+
     public Transporte deletarTransporte(Long id) throws Exception{
         Transporte transporte = findById(id);
         transporteRepository.delete(transporte);
@@ -72,11 +97,9 @@ public class TransporteService {
     }
 
     private void checkAtualizarTransporte(TransporteDTO transporte, Long transporteId) throws Exception, ResourceNotFoundException {
-        boolean mercadoFound = mercadoService.hasMercadoById(transporte.getMercadoId());
-        if(!mercadoFound){
+        boolean mercadoFound = mercadoService.hasMercadoById(transporte.getMercadoID());
+        if(!mercadoFound)
             throw new ResourceNotFoundException("Mercado não encontrado.");
-        }
-
 
     }
 

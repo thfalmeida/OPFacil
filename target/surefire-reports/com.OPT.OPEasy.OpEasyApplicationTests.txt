@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.OPT.OPEasy.OpEasyApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.154 s - in com.OPT.OPEasy.OpEasyApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.13 s - in com.OPT.OPEasy.OpEasyApplicationTests

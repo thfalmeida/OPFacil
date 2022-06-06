@@ -27,17 +27,22 @@ public class Transporte {
     private Long transporte;
     @ManyToOne
     private Mercado mercado;
+    @ManyToOne
+    private Viagem viagem;
 
     public void SetTransporte(Transporte transporte){
         if(transporte.getTransporte() != null)
             this.transporte = transporte.getTransporte();
         if(transporte.getMercado() != null)
             this.mercado = transporte.getMercado();
+        if(transporte.getViagem() != null)
+            this.transporte = transporte.getTransporte();
     }
 
     public void SetTransporte(TransporteDTO transporte){
         if(transporte.getTransporte() != null)
             this.transporte = transporte.getTransporte();
+        // if(transporte.)
     }
 
 }

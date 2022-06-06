@@ -1,9 +1,14 @@
 package com.OPT.OPEasy.Service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.OPT.OPEasy.DTO.ViagemDTO;
+import com.OPT.OPEasy.DTO.ViagemRelatorioDTO;
 import com.OPT.OPEasy.Util.ResourceNotFoundException;
+import com.OPT.OPEasy.Util.ViagemWritter;
 import com.OPT.OPEasy.model.Empresa;
 import com.OPT.OPEasy.model.Motorista;
 import com.OPT.OPEasy.model.Viagem;
@@ -21,6 +26,8 @@ public class ViagemService {
     private MotoristaService motoristaService;
     @Autowired
     private EmpresaService empresaService;
+    @Autowired
+    private ViagemWritter viagemWritter;
 
     
     public Viagem cadastrarViagem(ViagemDTO viagem){
@@ -58,6 +65,13 @@ public class ViagemService {
 
         viagemRepository.save(newViagem);
         return newViagem;
+    }
+
+    public Stream<Viagem> gerarRelatorio(ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
+        List<Viagem> viagens = viagemRepository.findAll();
+        viagemWritter.SetValues(rel);
+        viagemWritter.createReport(viagens);
+        return viagens.stream();
     }
 
     public Viagem deleteViagem(Viagem viagem){
