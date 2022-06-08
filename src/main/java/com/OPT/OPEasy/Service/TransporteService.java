@@ -1,7 +1,6 @@
 package com.OPT.OPEasy.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -14,8 +13,6 @@ import com.OPT.OPEasy.model.Mercado;
 import com.OPT.OPEasy.model.Transporte;
 import com.OPT.OPEasy.model.Viagem;
 import com.OPT.OPEasy.repository.TransporteRepository;
-
-import antlr.collections.List;
 
 @Service
 public class TransporteService {
@@ -30,10 +27,16 @@ public class TransporteService {
     public Transporte createTransporte(TransporteDTO transporte) throws Exception{
         if(hasTransporte(transporte.getTransporte()))
             throw new Exception("Transporte já cadastrado");
-        Viagem viagem = viagemService.getViagemById(transporte.getViagemID());
+
         Transporte newTransporte = new Transporte();
         newTransporte.SetTransporte(transporte);
+
+        Viagem viagem = viagemService.getViagemById(transporte.getViagemID());
         newTransporte.setViagem(viagem);
+
+        Mercado mercado = mercadoService.getMercadoByID(transporte.getMercadoID());
+        newTransporte.setMercado(mercado);
+
         transporteRepository.save(newTransporte);
         return newTransporte;
     }
@@ -61,6 +64,10 @@ public class TransporteService {
         return transportes; 
     }
 
+    public List<Transporte> listAll(){
+        return transporteRepository.findAll();
+    }
+
     public Transporte findById(Long id) throws Exception{
         Transporte opTransporte = transporteRepository.findById(id).orElseThrow(
             () -> new Exception("Transporte não encontrado."));
@@ -75,13 +82,8 @@ public class TransporteService {
 
     public Stream<Transporte> findByViagem(Long id) throws Exception{
         Viagem viagem = viagemService.getViagemById(id);
-        ArrayList<Transporte> transporte = (ArrayList<Transporte>) findByViagem(viagem);
-        return transporte.stream();
-    }
-
-    public List findByViagem(Viagem viagem){
-        ArrayList<Transporte> transportes = (ArrayList<Transporte>)transporteRepository.findByViagem(viagem);
-        return (List) transportes;
+        Stream<Transporte> transporte = transporteRepository.findByViagem(viagem).stream();
+        return transporte;
     }
 
     public Transporte deletarTransporte(Long id) throws Exception{

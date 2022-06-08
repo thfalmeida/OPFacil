@@ -28,8 +28,8 @@
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/model/Universo.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/TransporteService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/controller/MercadoController.java
-/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Util/ViagemWritter.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/DTO/TransporteDTO.java
+/home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/ViagemWritterService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/repository/MotoristaRepository.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/EmpresaService.java
 /home/link/Documentos/Meus docs/SpringBoot estudo/OpEasy/OpFacil/OPFacil/src/main/java/com/OPT/OPEasy/Service/UniversoService.java

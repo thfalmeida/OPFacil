@@ -28,6 +28,7 @@ public class Transporte {
     @ManyToOne
     private Mercado mercado;
     @ManyToOne
+    // @Column(nullable = false)
     private Viagem viagem;
 
     public void SetTransporte(Transporte transporte){
@@ -42,7 +43,6 @@ public class Transporte {
     public void SetTransporte(TransporteDTO transporte){
         if(transporte.getTransporte() != null)
             this.transporte = transporte.getTransporte();
-        // if(transporte.)
     }
 
 }

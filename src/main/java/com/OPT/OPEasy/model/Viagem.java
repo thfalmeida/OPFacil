@@ -29,6 +29,7 @@ public class Viagem {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="viagemGenerator")
     private Long id;
     @ManyToOne
+    // @Column(nullable = false)
     private Motorista motorista;
     @ManyToOne
     private Empresa empresa;

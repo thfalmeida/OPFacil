@@ -1,12 +1,16 @@
 package com.OPT.OPEasy.controller;
 
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.OPT.OPEasy.DTO.ViagemDTO;
 import com.OPT.OPEasy.DTO.ViagemRelatorioDTO;
 import com.OPT.OPEasy.Service.ViagemService;
+import com.OPT.OPEasy.Service.ViagemWritterService;
+import com.OPT.OPEasy.model.Transporte;
 import com.OPT.OPEasy.model.Viagem;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViagemController {
     @Autowired
     ViagemService viagemService;
+    @Autowired
+    ViagemWritterService writterService;
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Viagem> cadastrarViagem(@RequestBody ViagemDTO viagem){
@@ -73,8 +79,8 @@ public class ViagemController {
     }
 
     @GetMapping("/report")
-    public ResponseEntity<Stream<Viagem>> gerarRelatorio(@RequestBody ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
-        Stream<Viagem>viagens = viagemService.gerarRelatorio(rel);
+    public ResponseEntity<List<Transporte>> gerarRelatorio(@RequestBody ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
+        List<Transporte> viagens = writterService.generateReport(rel);
         return new ResponseEntity<>(viagens, HttpStatus.OK);
     }
 }
