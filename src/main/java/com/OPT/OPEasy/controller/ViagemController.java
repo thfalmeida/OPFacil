@@ -1,16 +1,11 @@
 package com.OPT.OPEasy.controller;
 
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
 import java.util.stream.Stream;
 
+import com.OPT.OPEasy.DTO.TransporteDTO;
 import com.OPT.OPEasy.DTO.ViagemDTO;
-import com.OPT.OPEasy.DTO.ViagemRelatorioDTO;
 import com.OPT.OPEasy.Service.ViagemService;
-import com.OPT.OPEasy.Service.ViagemWritterService;
-import com.OPT.OPEasy.model.Transporte;
 import com.OPT.OPEasy.model.Viagem;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViagemController {
     @Autowired
     ViagemService viagemService;
-    @Autowired
-    ViagemWritterService writterService;
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Viagem> cadastrarViagem(@RequestBody ViagemDTO viagem){
@@ -78,9 +71,21 @@ public class ViagemController {
         return new ResponseEntity<Viagem>(viagem, HttpStatus.OK);
     }
 
-    @GetMapping("/report")
-    public ResponseEntity<List<Transporte>> gerarRelatorio(@RequestBody ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
-        List<Transporte> viagens = writterService.generateReport(rel);
-        return new ResponseEntity<>(viagens, HttpStatus.OK);
+    @PutMapping("/transporte/add/{id}")
+    public ResponseEntity<Viagem> addTransporte(@PathVariable Long id,@RequestBody TransporteDTO transporte) throws Exception{
+        Viagem viagem = viagemService.addTransporte(id, transporte);
+        return new ResponseEntity<Viagem>(viagem, HttpStatus.OK);
     }
+
+    @DeleteMapping("/transporte/delete/{id}")
+    public ResponseEntity<Viagem> deletarTransporte(@PathVariable Long id, @RequestBody TransporteDTO transporte){
+        Viagem viagem = viagemService.deletarTransporte(id, transporte);
+        return new ResponseEntity<Viagem>(viagem, HttpStatus.OK);
+    }
+
+    // @GetMapping("/report")
+    // public ResponseEntity<List<Transporte>> gerarRelatorio(@RequestBody ViagemRelatorioDTO rel) throws FileNotFoundException, IOException{
+    //     List<Transporte> viagens = writterService.generateReport(rel);
+    //     return new ResponseEntity<>(viagens, HttpStatus.OK);
+    // }
 }

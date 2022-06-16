@@ -38,7 +38,7 @@ public class EmpresaController {
         return new ResponseEntity<Empresa>(newEmpresa, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/deletar/listar")
+    @GetMapping("/list")
     public ResponseEntity<Stream<Empresa>> listarEmpresa(){
         Stream<Empresa> empresas = empresaService.findAll();
         return new ResponseEntity<Stream<Empresa>>(empresas, HttpStatus.OK);

@@ -1,12 +1,14 @@
 package com.OPT.OPEasy.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,13 +31,14 @@ public class Viagem {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="viagemGenerator")
     private Long id;
     @ManyToOne
-    // @Column(nullable = false)
     private Motorista motorista;
     @ManyToOne
     private Empresa empresa;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
     private float valor, avaria;
+    @OneToMany
+    private List<Transporte> transportes;
 
 
     public void setAttributes(Viagem viagem){
@@ -60,6 +63,24 @@ public class Viagem {
             this.valor = viagem.getValor();
         if(viagem.getAvaria() != 0)
         this.avaria = viagem.getAvaria();
+    }
+
+
+    public void AddTransporte(Transporte transporte){
+        transportes.add(transporte);
+    }
+
+    public void DeleteTransporte(Transporte transporte){
+        transportes.remove(transporte);
+    }
+
+    public Transporte GetTransporteByTransporteNo(Long transporteNo){
+        for (Transporte transporte : transportes) {
+            if(transporte.getTransporte() == transporteNo)
+                return transporte;
+        }
+
+        return null;
     }
 
     public String ToString(Viagem viagem){

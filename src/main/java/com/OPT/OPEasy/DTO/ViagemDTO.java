@@ -16,6 +16,5 @@ public class ViagemDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
     private float valor, avaria;
-    // private List<TransporteDTO> transporte;
 
 }
