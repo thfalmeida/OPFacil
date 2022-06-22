@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import com.OPT.OPEasy.Util.ResourceNotFoundException;
 import com.OPT.OPEasy.model.Contato;
-
+import com.OPT.OPEasy.model.Empresa;
 import com.OPT.OPEasy.repository.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,22 @@ public class ContatoService {
     
     @Autowired
     ContatoRepository contatoRepository;
+    @Autowired 
+    EmpresaService empresaService;
 
 
     public Contato CadastrarContato(Contato contato) throws Exception{
         if(hasContatoByNick(contato.getNick()))
             throw new Exception("Nick informado já se encontra cadastrado. Tente outro.");
-        Contato newContato = new Contato();
-        newContato.setAttributes(contato);
-        contatoRepository.save(newContato);
-        return newContato;
+        
+        Empresa empresa = contato.getEmpresa();
+        if(empresa != null){
+            empresa = empresaService.getEmpresaByID(empresa.getId());
+            contato.setEmpresa(empresa);
+        }
+        
+        contatoRepository.save(contato);
+        return contato;
     }
 
     public Contato updateContato(Long id,Contato contato) throws Exception{
@@ -72,19 +79,18 @@ public class ContatoService {
         Contato contatoFound = contatoRepository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("O ID informado não foi encontrado."));
 
-        if(contato.getNick() != null){
-            String nick = contato.getNick();
+        String nick = contato.getNick();
 
-            if(hasContatoByNick(nick)){
-                Contato contatoByNick = contatoRepository.findByNick(nick).get();
-                if(contatoByNick.getId() == contatoFound.getId()){
-                    return contatoFound;
-                } else{
-                    throw new Exception("Nick informado já se encontra cadastrado. Tente outro.");
-                }
-            }
+        if(contato.getNick() == null || !hasContatoByNick(nick))
+            return contatoFound;
+
+        Contato contatoByNick = contatoRepository.findByNick(nick).get();
+        if(contatoByNick.getId() == contatoFound.getId()){
+            return contatoFound;
+        } else{
+            throw new Exception("Nick informado já se encontra cadastrado. Tente outro.");
         }
-        return contatoFound;
+        
     }
 
 }

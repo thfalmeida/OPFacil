@@ -33,8 +33,6 @@ public void setAttributes(Contato contato){
             this.email = contato.getEmail();
         if(contato.getNick() != null)
             this.nick = contato.getNick();
-        if(contato.getEmpresa() != null)
-            this.empresa = contato.getEmpresa();
         if(contato.getDescricao() != null)
             this.descricao = contato.getDescricao();
     }
